@@ -1,23 +1,16 @@
-﻿using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Core.DataAccess;
+using Entities.Concrete;
+using Entities.DTOs;
 
 namespace DataAccess.Abstract
 {
 
     //2. Olarak Product un işleneceği eylemler için soyut interface açıyoruz.
-    public interface IProductDal
+    // 3. Ekleme Kısmı DAL Daki Concrete içinde şu an memoryde çalıştığımız için
+    // InMemory Klasöründe InMemoryProductDal sınıfını açıyoruz.
+    public interface IProductDal:IEntityRepository<Product>
     {
-        List<Product> GetAll();
-        void Add(Product product);
-        void Update(Product product);
-        void Delete(Product product);
-        List<Product> GetAllByCategory(int categoryId);
-
-
-
+        List<ProductDetailDTO> GetProductDetails();
     }
 }
+// CODE REFACTORING

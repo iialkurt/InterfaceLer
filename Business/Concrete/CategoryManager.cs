@@ -12,31 +12,24 @@ namespace Business.Concrete
     public class CategoryManager : ICategoryService
     {
         ICategoryDal _categoryDal;
+        /// <summary>
+        /// constracter oluşturuyoruz
+        /// </summary>
+        /// <param name="categoryDal"></param>
         public CategoryManager(ICategoryDal categoryDal)
         {
-            
-            
-            _categoryDal = categoryDal;
+            _categoryDal = categoryDal; 
         }
 
-       
 
-            public List<Category> GetAll()
-            {
-                return _categoryDal.GetAll();   
-            }
-
-
-
-      
-
-        public List<Category> GetAllByCategory(int CategoryId)
+        public List<Category> GetAll()
         {
-            return _categoryDal.GetAllByCategory(CategoryId);
+            return _categoryDal.GetAll();
         }
 
-     
-
-      
+        public Category GetById(int categoryId)
+        {
+           return _categoryDal.Get(c=>c.CategoryId == categoryId);  
+        }
     }
 }
