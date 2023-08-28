@@ -1,8 +1,10 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +12,7 @@ namespace DataAccess.Conctrete.InMemory
 {/// <summary>
 /// 3. Olarak Veritabanında yapılacak işlemleri somut  şekilde yapılan yerdir.
 /// Entitiy framework olabilir. ADO.NET olabilir. DApper vss. olabilir.
+/// 4. Ekleme Kısmı Business iş katmanında Abstrack klasöründe soyut olarak IProductService interfacesini açıyoruz.
 /// </summary>
     public class InMemoryProductDal : IProductDal
     {
@@ -43,18 +46,23 @@ namespace DataAccess.Conctrete.InMemory
         public void Delete(Product product)
         {
             Product? productToDelete = null;
-            productToDelete = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
-            _products.Remove(productToDelete);
+             productToDelete = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
+             _products.Remove(productToDelete);
         }
 
-        public List<Product> GetAll()
+        public Product Get(Expression<Func<Product, bool>> filter)
+        {
+           throw new NotImplementedException();
+        }
+
+        public List<Product> GetAll(Expression<Func<Product, bool>>? filter = null)
         {
             return _products;
         }
 
-        public List<Product> GetAllByCategory(int categoryId)
+        public List<ProductDetailDTO> GetProductDetails()
         {
-            return _products.Where(p => p.CategoryId == categoryId).ToList();
+            throw new NotImplementedException();
         }
 
         public void Update(Product product)
@@ -66,6 +74,43 @@ namespace DataAccess.Conctrete.InMemory
             productToUpdate.UnitPrice = product.UnitPrice;
             productToUpdate.UnitsInStock = product.UnitsInStock;
         }
-       
     }
 }
+
+
+
+//public void Add(Product product)
+//{
+//    _products.Add(product);
+//}
+
+//public void Delete(Product product)
+//{
+//    Product? productToDelete = null;
+//    productToDelete = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
+//    _products.Remove(productToDelete);
+//}
+
+//public List<Product> GetAll()
+//{
+//    return _products;
+//}
+
+//public List<Product> GetAllByCategory(int categoryId)
+//{
+//    return _products.Where(p => p.CategoryId == categoryId).ToList();
+//}
+
+
+
+
+
+//public void Update(Product product)
+//{
+//    Product? productToUpdate = null;
+//    productToUpdate = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
+//    productToUpdate.ProductName = product.ProductName;
+//    productToUpdate.CategoryId = product.CategoryId;
+//    productToUpdate.UnitPrice = product.UnitPrice;
+ //   productToUpdate.UnitsInStock = product.UnitsInStock;
+//}

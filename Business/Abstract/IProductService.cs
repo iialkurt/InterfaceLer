@@ -1,4 +1,5 @@
 ﻿using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,13 @@ namespace Business.Abstract
     public interface IProductService
     {
         List<Product> GetAll();
-        public void Add(Product product);
-       
+        void Add(Product product);
+     void Update(Product product);
+        List<Product> GetAllByCategoryId(int id);  
+        List<Product> GetMaxStockQuantity(int min, int max);
+        List<Product> GetMaxMinPrice(int min, int max);
+        List<ProductDetailDTO> GetProductDetails();
+
+
     }
 }
