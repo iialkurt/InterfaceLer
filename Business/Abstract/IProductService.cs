@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 ﻿using Core.Utilities.Results;
 using Entities.Concrete;
+=======
+﻿using Entities.Concrete;
+>>>>>>> 282ed2de6f011907e66542a4b154e39de9aece32
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
@@ -16,6 +20,7 @@ namespace Business.Abstract
     //5. ProductManager somut iş koduna geçelim.
     public interface IProductService
     {
+<<<<<<< HEAD
         IDataResult<List<Product>> GetAll();
         //IDataResult<T> IDataResult interfacesinde  List<Product> GetaAll() şeklindeydi Idata
         //IdataResult ile bilgi döndüreceğiz.
@@ -28,6 +33,15 @@ namespace Business.Abstract
         IResult Add(Product product);
     
 
+=======
+        List<Product> GetAll();
+        void Add(Product product);
+     void Update(Product product);
+        List<Product> GetAllByCategoryId(int id);  
+        List<Product> GetMaxStockQuantity(int min, int max);
+        List<Product> GetMaxMinPrice(int min, int max);
+        List<ProductDetailDTO> GetProductDetails();
+>>>>>>> 282ed2de6f011907e66542a4b154e39de9aece32
 
 
     }

@@ -58,6 +58,7 @@ namespace Business.Concrete
             _productDal.Update(product);    
         }
 
+<<<<<<< HEAD
         public IDataResult<List<Product>> GetAllByCategoryId(int id)
         {
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(p=>p.CategoryId==id),Messages.ProductListed);
@@ -85,5 +86,26 @@ namespace Business.Concrete
         }
 
        
+=======
+        public List<Product> GetAllByCategoryId(int id)
+        {
+            return _productDal.GetAll(p=>p.CategoryId==id);
+        }
+
+        public List<Product> GetMaxStockQuantity(int min, int max)
+        {
+            return _productDal.GetAll(p => p.UnitsInStock >= min && p.UnitsInStock <= max);
+        }
+
+        public List<Product> GetMaxMinPrice(int min, int max)
+        {
+          return _productDal.GetAll(p=>p.UnitPrice<=min && p.UnitPrice<=max);   
+        }
+
+        public List<ProductDetailDTO> GetProductDetails()
+        {
+            return _productDal.GetProductDetails();
+        }
+>>>>>>> 282ed2de6f011907e66542a4b154e39de9aece32
     }
 }
